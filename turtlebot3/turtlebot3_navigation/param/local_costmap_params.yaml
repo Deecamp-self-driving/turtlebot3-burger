@@ -6,11 +6,17 @@ local_costmap:
   publish_frequency: 10.0
   transform_tolerance: 0.5  
 
-  static_map: true  
-  rolling_window: false
-  width: 3.6
-  height: 3.6
+  static_map: false  
+  rolling_window: true
+  width: 0.5
+  height: 0.5
   resolution: 0.02
+
+  inflation_layer: 
+    cost_scaling_factor: 15.0
+    enabled: true
+    inflate_unknown: false
+    inflation_radius: 0.15
   
   plugins:
     - {name: static_layer,    type: "costmap_2d::StaticLayer"}
