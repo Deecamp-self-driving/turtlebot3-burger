@@ -1,5 +1,5 @@
 local_costmap:
-  global_frame: /map
+  global_frame: /odom
   robot_base_frame: /base_footprint
 
   update_frequency: 10.0
@@ -8,9 +8,15 @@ local_costmap:
 
   static_map: false  
   rolling_window: true
-  width: 1
-  height: 1
+  width: 0.5
+  height: 0.5
   resolution: 0.02
+
+  inflation_layer: 
+    cost_scaling_factor: 15.0
+    enabled: true
+    inflate_unknown: false
+    inflation_radius: 0.15
   
   plugins:
     - {name: static_layer,    type: "costmap_2d::StaticLayer"}
