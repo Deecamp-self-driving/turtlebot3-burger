@@ -1,7 +1,8 @@
 <launch>
   <!-- Arguments -->
   <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
-  <arg name="map_file" default="$(find turtlebot3_navigation)/maps/map.yaml"/>
+  <arg name="map_file" default="/home/lich/deecp_ws/src/turtlebot3-burger/map/ct9.yaml"/>
+  <arg name="map_file_nav" default="/home/lich/deecp_ws/src/turtlebot3-burger/map/navigation_map.yaml"/>
   <arg name="open_rviz" default="true"/>
 
   <!-- Turtlebot3 -->
