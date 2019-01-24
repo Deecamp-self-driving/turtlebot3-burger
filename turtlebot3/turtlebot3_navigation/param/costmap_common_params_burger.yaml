@@ -15,3 +15,13 @@ cost_scaling_factor: 15 #0.01 #3.0
 map_type: costmap
 observation_sources: scan
 scan: {sensor_frame: base_scan, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+
+obstacle_layer:
+  enabled: true
+  combination_method: 1
+
+inflation_layer:
+  enabled: true
+
+static_layer:
+  enabled: true

@@ -13,10 +13,10 @@ local_costmap:
   resolution: 0.02
 
   inflation_layer: 
-    cost_scaling_factor: 15.0
+    cost_scaling_factor: 10
     enabled: true
     inflate_unknown: false
-    inflation_radius: 0.15
+    inflation_radius: 0.1
   
   plugins:
     - {name: static_layer,    type: "costmap_2d::StaticLayer"}
