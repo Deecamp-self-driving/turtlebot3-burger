@@ -8,14 +8,3 @@ global_costmap:
 
   static_map: true
 
-  inflation_layer:
-    inflation_radius: 0.15
-    enabled: true
-    inflate_unknown: false
-    cost_scaling_factor: 15 #0.01 #3.0
-
-  plugins:
-      - {name: static_layer,    type: "costmap_2d::StaticLayer"}
-      - {name: obstacle_layer,  type: "costmap_2d::ObstacleLayer"}
-      - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
-
