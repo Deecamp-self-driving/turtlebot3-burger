@@ -5,36 +5,35 @@ TebLocalPlannerROS:
  # Trajectory
   
  teb_autosize: True
- dt_ref: 0.1 #0.3
- dt_hysteresis: 0.02 #0.1
+ dt_ref: 0.3
+ dt_hysteresis: 0.1
  global_plan_overwrite_orientation: True
  allow_init_with_backwards_motion: False
- max_global_plan_lookahead_dist: 1.0 #3.0
+ max_global_plan_lookahead_dist: 0.5 #3.0
  feasibility_check_no_poses: 5
     
  # Robot
          
  max_vel_x: 0.22 #0.4
- max_vel_x_backwards: 0.22
+ max_vel_x_backwards: 0.22 #0.2
  max_vel_y: 0.0
- max_vel_theta: 2.75  #0.3
+ max_vel_theta: 2.75 #0.3
  acc_lim_x: 2.5 #0.5
  acc_lim_theta: 3.2 #0.5
  min_turning_radius: 0.0 # diff-drive robot (can turn on place!)
 
  footprint_model:
-   type: "circular"
-   radius: 0.05
+   type: "point"
 
  # GoalTolerance
     
- xy_goal_tolerance: 0.05 #0.2
- yaw_goal_tolerance: 0.17 #0.1
+ xy_goal_tolerance: 0.2
+ yaw_goal_tolerance: 0.1
  free_goal_vel: False
     
  # Obstacles
     
- min_obstacle_dist: 0.01 #0.25 # This value must also include our robot radius, since footprint_model is set to "point".
+ min_obstacle_dist: 0.05 #0.25 # This value must also include our robot radius, since footprint_model is set to "point".
  include_costmap_obstacles: True
  costmap_obstacles_behind_robot_dist: 1.5
  obstacle_poses_affected: 30
@@ -63,7 +62,7 @@ TebLocalPlannerROS:
 
  # Homotopy Class Planner
 
- enable_homotopy_class_planning: True
+ enable_homotopy_class_planning: False
  enable_multithreading: True
  simple_exploration: False
  max_number_classes: 4
@@ -78,3 +77,5 @@ TebLocalPlannerROS:
  obstacle_keypoint_offset: 0.1
  obstacle_heading_threshold: 0.45
  visualize_hc_graph: False
+
+ global_plan_viapoint_sep: 0.05
