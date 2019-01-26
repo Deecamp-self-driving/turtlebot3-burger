@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "car_detect");
     ros::NodeHandle n;
 
-    ros::ServiceServer service = n.advertiseService("detect_car_area", detect);
+    ros::ServiceServer service = n.advertiseService("IsOK", detect);
     ROS_INFO("Ready to detect car.");
     ros::spin();
 
