@@ -85,7 +85,7 @@ class Env():
         if min_range > min(scan_range) > 0:
             done = True
 
-        current_distance = round(math.hypot(self.goal_x - self.position.x, self.goal_y - self.position.y), 2)
+        current_distance = round(math.hypot(self.goal_x - self.position.x, self.goal_y - self.position.y),2)
         if current_distance < 0.2:
             self.get_goalbox = True
 
@@ -93,6 +93,7 @@ class Env():
 
     def setReward(self, state, done, action):
         yaw_reward = []
+        obstacle_min_range = state[-2]
         current_distance = state[-3]
         heading = state[-4]
 
@@ -102,16 +103,22 @@ class Env():
             yaw_reward.append(tr)
 
         distance_rate = 2 ** (current_distance / self.goal_distance)
-        reward = ((round(yaw_reward[action] * 5, 2)) * distance_rate)
+
+        if obstacle_min_range < 0.5:
+            ob_reward = -5
+        else:
+            ob_reward = 0
+
+        reward = ((round(yaw_reward[action] * 5, 2)) * distance_rate) + ob_reward
 
         if done:
             rospy.loginfo("Collision!!")
-            reward = -150
+            reward = -500
             self.pub_cmd_vel.publish(Twist())
 
         if self.get_goalbox:
             rospy.loginfo("Goal!!")
-            reward = 200
+            reward = 2000
             self.pub_cmd_vel.publish(Twist())
             self.goal_x, self.goal_y = self.respawn_goal.getPosition(True, delete=True)
             self.goal_distance = self.getGoalDistace()
@@ -119,12 +126,13 @@ class Env():
 
         return reward
 
+
     def step(self, action):
         max_angular_vel = 1.5
         ang_vel = ((self.action_size - 1)/2 - action) * max_angular_vel * 0.5
 
         vel_cmd = Twist()
-        vel_cmd.linear.x = 0.15
+        vel_cmd.linear.x = 0.2
         vel_cmd.angular.z = ang_vel
         self.pub_cmd_vel.publish(vel_cmd)
 
